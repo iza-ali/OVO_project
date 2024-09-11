@@ -64,7 +64,7 @@ public class AccountController {
 
 return "signup";
         } catch (Exception e) {
-            bindingResult.addError(new FieldError("player", "firstName", e.getMessage()));
+            bindingResult.addError(new FieldError("player", "userName", e.getMessage()));
             return "redirect:/login";
         }
 

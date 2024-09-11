@@ -12,10 +12,10 @@ spring:
       mode: embedded
 
   datasource:
-    url: jdbc:postgresql://postgresqlflexibletest.postgres.database.azure.com:5432/demo?sslmode=require
-    username: <your_postgresql_ad_non_admin_username>
-    azure:
-      passwordless-enabled: true
+#    url: jdbc:postgresql://postgresqlflexibletest.postgres.database.azure.com:5432/demo?sslmode=require
+#    username: <your_postgresql_ad_non_admin_username>
+#    azure:
+#      passwordless-enabled: true
 
   jpa:
     show-sql: true

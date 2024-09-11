@@ -15,7 +15,7 @@ public class PlayerService implements UserDetailsService {
 
     private final PlayerRepository playerRepository;
 
-    public PlayerService(PlayerService playerService, PlayerRepository playerRepository) {
+    public PlayerService( PlayerRepository playerRepository) {
 
         this.playerRepository = playerRepository;
     }
