@@ -23,6 +23,6 @@ public class DashboardController {
         String email = authentication.getName();
         PlayerModel player = playerRepository.findByEmail(email);
         model.addAttribute("player", player);
-        return "dashboard";
+        return "dashboard1";
     }
 }
