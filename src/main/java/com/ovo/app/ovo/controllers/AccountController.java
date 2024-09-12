@@ -35,7 +35,6 @@ public class AccountController {
     }
 
     @PostMapping("/signup")
-
     public String signup(Model model,
                          @Valid @ModelAttribute PlayerDto playerDto,
                          BindingResult bindingResult) {
@@ -54,7 +53,6 @@ public class AccountController {
             player.setEmail(playerDto.getEmail());
             player.setPassword(bcryptedPassword);
             player.setUsername(playerDto.getUsername());
-            player.setCreatedAt(Date.from(new Date().toInstant()));
             player.setPlayerId(Math.abs(new Random().nextLong()) + "");
             player.setType(PlayerTypeEnum.PLAYER);
 
