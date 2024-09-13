@@ -20,9 +20,13 @@ public class DashboardController {
     @GetMapping({ "/dashboard"})
     public String dashboard(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String email = authentication.getName();
-        PlayerModel player = playerRepository.findByEmail(email);
-        model.addAttribute("player", player);
+        String username = authentication.getName();
+        PlayerModel player = playerRepository.findByUsername(username);
+        if (player != null) {
+            model.addAttribute("player", player);
+        } else {
+            return "redirect:/login";
+        }
         return "dashboard1";
     }
 }
