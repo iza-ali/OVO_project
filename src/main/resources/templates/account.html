@@ -11,7 +11,7 @@
 <!--        <link href="/css/custom.css" rel="stylesheet">-->
     </head>
     <body>
-        <div class="d-flex" id="wrapper">
+        <div id="wrapper">
             <!-- Page content wrapper-->
             <div id="page-content-wrapper">
                 <!-- Top navigation-->
@@ -35,15 +35,111 @@
                     </div>
                 </nav>
                 <!-- Page content-->
-                <div class="container-fluid">
-                    <h3 class="mt-4">Your details:</h3>
-                    <p>Name: <span th:text="${player.username}"></span></p>
-                    <p>Email: <span th:text="${player.email}"></span></p>
-                    <p>Date joined: <span th:text="${player.createdAt}"></span></p>
-                    <div><button class= "alert alert-danger" role="button" href="#"><b>Delete my account</b></button></div>
+                <div class="container-md">
+                    <h3 class="mt-4">Your details</h3><br><br>
+                    <p class="justify-content-center">Username: <span th:text="${player.username}"></span>
+                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#usernameModal">
+                        Edit
+                        </button>
+                    </p>
+
+                    <p class="justify-content-center">E-mail: <span th:text="${player.email}"></span>
+                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#emailModal">
+                            Edit
+                        </button>
+                    </p>
+                    <p class="justify-content-center">Date joined: <span th:text="${player.createdAt}"></span><br><br></p>
+                    <div class="justify-content-center">
+                        <button type="button" class= "btn btn-secondary" data-bs-toggle="modal" data-bs-target="#passwordModal">Change password</button><br><br>
+                        <button type="button" class= "alert alert-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete my account</button>
+                    </div>
                 </div>
             </div>
         </div>
+
+<!--modal to edit username-->
+        <div class="modal fade" id="usernameModal" tabindex="-1" role="dialog" aria-labelledby="usernameModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit username</h5>
+                    </div>
+                    <div class="modal-body">
+                        <form id="usernameForm">
+                        <label for="changeusername">Type in new username</label><br>
+                        <input id="changeusername" type="text"></form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" form="usernameForm" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!--        modal to edit email-->
+        <div class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="emailModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="emailModalLabel">Edit e-mail</h5>
+                    </div>
+                    <div class="modal-body">
+                        <form id="emailForm">
+                            <label for="changeemail">Type in new e-mail</label><br>
+                            <input id="changeemail" type="email"></form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" form="emailForm" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!--        modal to change password-->
+
+        <div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="passwordModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="passwordModalLabel">Edit password</h5>
+                    </div>
+                    <div class="modal-body">
+                        <form id="passwordForm">
+                            <label for="confirmPassword">Type in current password:</label><br>
+                            <input id="confirmPassword" type="password"><br>
+                            <label for="changePassword1">Type in new password:</label><br>
+                            <input id="changePassword1" type="password"><br>
+                            <label for="changePassword2">Type in new password again:</label><br>
+                            <input id="changePassword2" type="password"></form><br>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" form="passwordForm" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!--        modal to delete account-->
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel">Delete account</h5>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete your account?   </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button class="alert alert-danger">Delete account</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
