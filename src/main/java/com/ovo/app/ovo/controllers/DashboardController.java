@@ -25,4 +25,13 @@ public class DashboardController {
         model.addAttribute("player", player);
         return "dashboard1";
     }
+    @GetMapping({ "/account"})
+    public String account(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
+        PlayerModel player = playerRepository.findByEmail(email);
+        model.addAttribute("player", player);
+        return "account";
+    }
+
 }

@@ -5,6 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>OVO Gaming</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        .content-section {
+            height: calc(100vh - 56px); /* Adjust the height as needed */
+            overflow-y: auto;
+        }
+
+        .image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80%;
+            object-fit: cover;
+        }
+    </style>
     <script>
         function showSection(sectionId) {
             document.getElementById('dashboard-content').style.display = 'none';
@@ -45,7 +60,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
                         <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <a class="dropdown-item" href="/account">Account</a>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -55,22 +70,27 @@
             </div>
         </div>
         <div class="col py-3">
-            <div id="dashboard-content" class="container my-5">
+            <div id="dashboard-content" class="container my-5 content-section">
                 <!-- Dashboard content here -->
                 <h1>Welcome to the Dashboard</h1>
                 <p>This is the dashboard content.</p>
             </div>
-            <div id="games-grid" class="container my-5" style="display: none;">
+            <div id="games-grid" class="container my-5 content-section" style="display: none;">
                 <div class="row">
                     <!-- Card 1: Tic-Tac-Toe -->
                     <div class="col-md-4 mb-4">
                         <div class="card" style="width: 100%;">
-                            <img src="https://www.svgrepo.com/show/143264/tic-tac-toe-game.svg" class="card-img-top" alt="Tic-Tac-Toe" >
-                            <div class="card-body">
-                                <h5 class="card-title">Tic-Tac-Toe</h5>
-                                <p class="card-text">Play a classic game of Tic-Tac-Toe.</p>
-                                <a href="#" class="btn btn-primary">Play Now</a>
-                                <a href="#" class="btn btn-primary">Leaderboard</a>
+                            <div class="row no-gutters">
+                                <div class="col-4">
+                                    <img src="https://www.svgrepo.com/show/143264/tic-tac-toe-game.svg" class="card-img" alt="Tic-Tac-Toe" style="height: 100%; object-fit: cover;">
+                                </div>
+                                <div class="col-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Tic-Tac-Toe</h5>
+                                        <p class="card-text">Play a classic game of Tic-Tac-Toe.</p>
+                                        <a href="#" class="btn btn-primary">Play Now</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -78,12 +98,17 @@
                     <!-- Card 2: Snake and Ladder -->
                     <div class="col-md-4 mb-4">
                         <div class="card" style="width: 100%;">
-                            <img src="https://img.freepik.com/premium-vector/snake-ladder-set_7894-44.jpg" class="card-img-top" alt="Snake and Ladder"  >
-                            <div class="card-body">
-                                <h5 class="card-title">Snake and Ladder</h5>
-                                <p class="card-text">Enjoy the fun game of Snake and Ladder.</p>
-                                <a href="#" class="btn btn-primary">Play Now</a>
-
+                            <div class="row no-gutters">
+                                <div class="col-4">
+                                    <img src="https://img.freepik.com/premium-vector/snake-ladder-set_7894-44.jpg" class="card-img" alt="Snake and Ladder" style="height: 100%; object-fit: cover;">
+                                </div>
+                                <div class="col-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Snake and Ladder</h5>
+                                        <p class="card-text">Enjoy the fun game of Snake and Ladder.</p>
+                                        <a href="#" class="btn btn-primary">Play Now</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -91,11 +116,17 @@
                     <!-- Card 3: Chess -->
                     <div class="col-md-4 mb-4">
                         <div class="card" style="width: 100%;">
-                            <img src="https://plus.unsplash.com/premium_photo-1672855191351-e26398f27e5f?fm=jpg" class="card-img-top" alt="Chess" >
-                            <div class="card-body">
-                                <h5 class="card-title">Chess</h5>
-                                <p class="card-text">Challenge your mind with a game of Chess.</p>
-                                <a href="#" class="btn btn-primary">Play Now</a>
+                            <div class="row no-gutters">
+                                <div class="col-4">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo7inybK5sa7MyLxTfq8xh1z1T2VguXYPD8A&s" class="card-img" alt="Chess" style="height: 100%; object-fit: cover;">
+                                </div>
+                                <div class="col-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Chess</h5>
+                                        <p class="card-text">Challenge your mind with a game of Chess.</p>
+                                        <a href="#" class="btn btn-primary">Play Now</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -103,11 +134,17 @@
                     <!-- Card 4: Connect 4 -->
                     <div class="col-md-4 mb-4">
                         <div class="card" style="width: 100%;">
-                            <img src="https://a.silvergames.com/j/b/connect-4.jpg" class="card-img-top" alt="Connect 4"  >
-                            <div class="card-body">
-                                <h5 class="card-title">Connect 4</h5>
-                                <p class="card-text">Be the first to connect four in a row.</p>
-                                <a href="#" class="btn btn-primary">Play Now</a>
+                            <div class="row no-gutters">
+                                <div class="col-4">
+                                    <img src="https://plus.unsplash.com/premium_photo-1672855191351-e26398f27e5f?fm=jpg" class="card-img" alt="Connect 4" style="height: 100%; object-fit: cover;">
+                                </div>
+                                <div class="col-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Connect 4</h5>
+                                        <p class="card-text">Be the first to connect four in a row.</p>
+                                        <a href="#" class="btn btn-primary">Play Now</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -115,18 +152,42 @@
                     <!-- Card 5: Stickman -->
                     <div class="col-md-4 mb-4">
                         <div class="card" style="width: 100%;">
-                            <img src="https://www.numuki.com/images/category/stickman.jpg" class="card-img-top" alt="Stickman">
-                            <div class="card-body">
-                                <h5 class="card-title">Stickman</h5>
-                                <p class="card-text">Join Stickman on his adventures.</p>
-                                <a href="#" class="btn btn-primary">Play Now</a>
+                            <div class="row no-gutters">
+                                <div class="col-4">
+                                    <img src="https://a.silvergames.com/j/b/connect-4.jpg" class="card-img" alt="Stickman" style="height: 100%; object-fit: cover;">
+                                </div>
+                                <div class="col-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Stickman</h5>
+                                        <p class="card-text">Join Stickman on his adventures.</p>
+                                        <a href="#" class="btn btn-primary">Play Now</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-
+                    <!-- Card 6: Puzzle -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card" style="width: 100%;">
+                            <div class="row no-gutters">
+                                <div class="col-4">
+                                    <img src="https://www.numuki.com/images/category/stickman.jpg" class="card-img" alt="Puzzle" style="height: 100%; object-fit: cover;">
+                                </div>
+                                <div class="col-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Puzzle</h5>
+                                        <p class="card-text">Solve tricky puzzles to challenge your brain.</p>
+                                        <a href="#" class="btn btn-primary">Play Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+        </div>
         </div>
     </div>
 </div>
