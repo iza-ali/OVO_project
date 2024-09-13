@@ -37,21 +37,21 @@
                 <!-- Page content-->
                 <div class="container-md">
                     <h3 class="mt-4">Your details</h3><br><br>
-                    <p class="justify-content-center">Name: <span th:text="${player.username}"></span>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#usernameModal">
+                    <p class="justify-content-center">Username: <span th:text="${player.username}"></span>
+                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#usernameModal">
                         Edit
                         </button>
                     </p>
 
                     <p class="justify-content-center">E-mail: <span th:text="${player.email}"></span>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#emailModal">
+                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#emailModal">
                             Edit
                         </button>
                     </p>
                     <p class="justify-content-center">Date joined: <span th:text="${player.createdAt}"></span><br><br></p>
                     <div class="justify-content-center">
                         <button type="button" class= "btn btn-secondary" data-bs-toggle="modal" data-bs-target="#passwordModal">Change password</button><br><br>
-                        <button class= "alert alert-danger" role="button" href="#"><b>Delete my account</b></button>
+                        <button type="button" class= "alert alert-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete my account</button>
                     </div>
                 </div>
             </div>
@@ -99,11 +99,11 @@
 
 <!--        modal to change password-->
 
-        <div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="emailModalLabel" aria-hidden="true">
+        <div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="passwordModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="passwordModalLabel">Edit e-mail</h5>
+                        <h5 class="modal-title" id="passwordModalLabel">Edit password</h5>
                     </div>
                     <div class="modal-body">
                         <form id="passwordForm">
@@ -117,6 +117,24 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="submit" form="passwordForm" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!--        modal to delete account-->
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel">Delete account</h5>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete your account?   </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button class="alert alert-danger">Delete account</button>
                     </div>
                 </div>
             </div>
