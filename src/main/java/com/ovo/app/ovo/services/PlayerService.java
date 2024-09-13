@@ -31,4 +31,6 @@ public class PlayerService implements UserDetailsService {
         throw new UsernameNotFoundException("User not found");
     }
 
+
+
 }

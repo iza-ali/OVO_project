@@ -41,6 +41,9 @@ public class AccountController {
 
         if (!playerDto.getPassword().equals(playerDto.getConfirmPassword())) {
             bindingResult.addError(new FieldError("player", "confirmPassword", "Passwords do not match"));
+
+        } else if(playerRepository.findByUsername(playerDto.getUsername()) != null) {
+            bindingResult.addError(new FieldError("player", "username", "Username already exists"));
         } else if (playerRepository.findByEmail(playerDto.getEmail()) != null) {
             bindingResult.addError(new FieldError("player", "email", "Email already exists"));
         } else if (bindingResult.hasErrors()) {

@@ -11,5 +11,6 @@ public interface PlayerRepository extends JpaRepository<PlayerModel, Integer> {
 
 
     PlayerModel findByEmail(String email);
+    PlayerModel findByUsername(String username);
 
 }
