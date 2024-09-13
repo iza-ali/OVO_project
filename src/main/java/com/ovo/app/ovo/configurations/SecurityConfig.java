@@ -23,6 +23,7 @@ public class SecurityConfig {
                                 .requestMatchers("/logout").authenticated()
                                 .requestMatchers("/account").authenticated()
                                 .requestMatchers("/tictactoe").authenticated()
+                                .requestMatchers("/leaderboard").authenticated()
                                 .requestMatchers("/**/*.js", "/**/*.css").permitAll()
 
                 ).formLogin(formLogin ->
