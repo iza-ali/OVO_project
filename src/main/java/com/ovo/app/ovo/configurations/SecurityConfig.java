@@ -21,6 +21,8 @@ public class SecurityConfig {
                                 .requestMatchers("/signup").permitAll()
                                 .requestMatchers("/dashboard").authenticated()
                                 .requestMatchers("/logout").authenticated()
+                                .requestMatchers("/account").authenticated()
+                                .requestMatchers("/tictactoe").authenticated()
                                 .requestMatchers("/**/*.js", "/**/*.css").permitAll()
 
                 ).formLogin(formLogin ->
