@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 
 @Controller
-public class PlayerInfoController {
+public class AccountTemplateController {
 
     private final PlayerRepository playerRepository;
 
-    public PlayerInfoController(PlayerRepository playerRepository) {
+    public AccountTemplateController(PlayerRepository playerRepository) {
         this.playerRepository = playerRepository;
     }
 
@@ -30,5 +30,7 @@ public class PlayerInfoController {
         }
         return "account";
     }
+
+
 
 }
