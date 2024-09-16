@@ -22,11 +22,11 @@ public class PlayerService implements UserDetailsService {
 
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        PlayerModel player= playerRepository.findByEmail(email);
+        PlayerModel player= playerRepository.findByUsername(username);
         if(player!=null){
-            return User.withUsername(player.getEmail()).password(player.getPassword()).build();
+            return User.withUsername(player.getUsername()).password(player.getPassword()).build();
         }
         throw new UsernameNotFoundException("User not found");
     }

@@ -13,8 +13,6 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import java.util.Date;
 import java.util.Random;
 
 @Controller
@@ -36,18 +34,22 @@ public class AccountController {
 
     @PostMapping("/signup")
     public String signup(Model model,
-                         @Valid @ModelAttribute PlayerDto playerDto,
+                         @Valid @ModelAttribute("player") PlayerDto playerDto,
                          BindingResult bindingResult) {
 
         if (!playerDto.getPassword().equals(playerDto.getConfirmPassword())) {
             bindingResult.addError(new FieldError("player", "confirmPassword", "Passwords do not match"));
-        } else if (playerRepository.findByEmail(playerDto.getEmail()) != null) {
-            bindingResult.addError(new FieldError("player", "email", "Email already exists"));
-        } else if (bindingResult.hasErrors()) {
+        }
+        if (playerRepository.findByEmail(playerDto.getEmail()) != null) {
+            bindingResult.addError(new FieldError("player", "email", "User with given Email already exists"));
+        }
+        if (playerRepository.findByUsername(playerDto.getUsername()) != null) {
+            bindingResult.addError(new FieldError("player", "username", "User with given username already exists"));
+        }
+        if (bindingResult.hasErrors()) {
             return "signup";
         }
         try {
-
             var bcryptedPassword = new BCryptPasswordEncoder().encode(playerDto.getPassword());
             PlayerModel player = new PlayerModel();
             player.setEmail(playerDto.getEmail());
@@ -55,18 +57,14 @@ public class AccountController {
             player.setUsername(playerDto.getUsername());
             player.setPlayerId(Math.abs(new Random().nextLong()) + "");
             player.setType(PlayerTypeEnum.PLAYER);
-
             playerRepository.save(player);
             model.addAttribute("player", new PlayerDto());
             model.addAttribute("success", true);
-
-return "signup";
+            return "signup";
         } catch (Exception e) {
             bindingResult.addError(new FieldError("player", "username", e.getMessage()));
             return "redirect:/login";
         }
-
-
     }
 
     @GetMapping("/logout")
