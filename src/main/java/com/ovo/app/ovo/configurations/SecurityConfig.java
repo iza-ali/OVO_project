@@ -24,6 +24,7 @@ public class SecurityConfig {
                                 .requestMatchers("/account").authenticated()
                                 .requestMatchers("/tictactoe").authenticated()
                                 .requestMatchers("/leaderboard").authenticated()
+                                .requestMatchers("../static/assets").permitAll()
                                 .requestMatchers("/**/*.js", "/**/*.css").permitAll()
 
                 ).formLogin(formLogin ->
