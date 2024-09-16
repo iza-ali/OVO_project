@@ -4,6 +4,7 @@ import com.ovo.app.ovo.enums.PlayerTypeEnum;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.Optional;
 
 @Entity
 @Table(name = "players")
@@ -99,4 +100,5 @@ public class PlayerModel {
     protected void onCreate() {
         this.createdAt = new Date();
     }
+
 }

@@ -9,16 +9,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class DashboardController {
+public class GameController {
 
     private final PlayerRepository playerRepository;
 
-    public DashboardController(PlayerRepository playerRepository) {
+    public GameController(PlayerRepository playerRepository) {
         this.playerRepository = playerRepository;
     }
 
-    @GetMapping({ "/dashboard"})
-    public String dashboard(Model model) {
+    @GetMapping({ "/tictactoe"})
+    public String account(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         PlayerModel player = playerRepository.findByUsername(username);
@@ -27,6 +27,6 @@ public class DashboardController {
         } else {
             return "redirect:/login";
         }
-        return "dashboard";
+        return "tictactoe";
     }
 }
