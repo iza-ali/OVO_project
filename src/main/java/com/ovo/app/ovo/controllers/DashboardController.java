@@ -1,20 +1,25 @@
 package com.ovo.app.ovo.controllers;
 
+import com.ovo.app.ovo.models.GameModel;
 import com.ovo.app.ovo.models.PlayerModel;
 import com.ovo.app.ovo.repositories.PlayerRepository;
+import com.ovo.app.ovo.services.GameServices;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.List;
+
 @Controller
 public class DashboardController {
 
     private final PlayerRepository playerRepository;
-
-    public DashboardController(PlayerRepository playerRepository) {
+    private final GameServices gameServices;
+    public DashboardController(PlayerRepository playerRepository, GameServices gameServices) {
         this.playerRepository = playerRepository;
+        this.gameServices = gameServices;
     }
 
     @GetMapping({ "/dashboard"})
@@ -22,6 +27,8 @@ public class DashboardController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         PlayerModel player = playerRepository.findByUsername(username);
+        List<GameModel> games = gameServices.getAllGames();
+        model.addAttribute("games", games);
         if (player != null) {
             model.addAttribute("player", player);
         } else {
@@ -29,13 +36,6 @@ public class DashboardController {
         }
         return "dashboard";
     }
-    @GetMapping({ "/account"})
-    public String account(Model model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String email = authentication.getName();
-        PlayerModel player = playerRepository.findByEmail(email);
-        model.addAttribute("player", player);
-        return "account";
-    }
+
 
 }

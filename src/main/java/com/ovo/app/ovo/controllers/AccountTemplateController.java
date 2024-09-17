@@ -15,6 +15,7 @@ public class AccountTemplateController {
     private final PlayerRepository playerRepository;
 
     public AccountTemplateController(PlayerRepository playerRepository) {
+
         this.playerRepository = playerRepository;
     }
 
@@ -30,7 +31,5 @@ public class AccountTemplateController {
         }
         return "account";
     }
-
-
 
 }

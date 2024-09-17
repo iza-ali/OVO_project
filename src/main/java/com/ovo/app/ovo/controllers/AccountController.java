@@ -4,6 +4,7 @@ import com.ovo.app.ovo.enums.PlayerTypeEnum;
 import com.ovo.app.ovo.models.PlayerDto;
 import com.ovo.app.ovo.models.PlayerModel;
 import com.ovo.app.ovo.repositories.PlayerRepository;
+import jakarta.annotation.PostConstruct;
 import jakarta.validation.Valid;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -31,7 +32,19 @@ public class AccountController {
         model.addAttribute("success", false);
         return "signup";
     }
-
+    @PostConstruct
+    public void createDefaultAdmin() {
+        var bcryptedPassword = new BCryptPasswordEncoder();
+        if (playerRepository.findByUsername("admin@ovo.com") == null) {
+            PlayerModel admin = new PlayerModel();
+            admin.setUsername("admin@ovo.com");
+            admin.setEmail("admin@ovo.com");
+            admin.setPassword(bcryptedPassword.encode("admin@123"));
+            admin.setPlayerId("ADMIN");
+            admin.setType(PlayerTypeEnum.ADMIN);
+            playerRepository.save(admin);
+        }
+    }
     @PostMapping("/signup")
     public String signup(Model model,
                          @Valid @ModelAttribute("player") PlayerDto playerDto,
@@ -71,5 +84,7 @@ public class AccountController {
     public String logout() {
         return "redirect:/logout";
     }
+
+
 
 }

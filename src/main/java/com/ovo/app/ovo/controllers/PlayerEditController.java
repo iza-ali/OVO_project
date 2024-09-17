@@ -14,8 +14,12 @@ import java.security.Principal;
 @Controller
 public class PlayerEditController {
 
-    @Autowired
-    private PlayerService playerService;
+
+    public PlayerEditController(PlayerService playerService) {
+        this.playerService = playerService;
+    }
+
+    private final PlayerService playerService;
 
     @PostMapping("/update-password")
     public String updatePassword(@RequestParam String currentPassword,
