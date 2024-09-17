@@ -20,6 +20,15 @@ public class PlayerService implements UserDetailsService {
         this.playerRepository = playerRepository;
     }
 
+    public PlayerModel getUserByUsername(String username) throws UsernameNotFoundException {
+
+        PlayerModel player= playerRepository.findByUsername(username);
+        if(player!=null){
+            return player;
+        }
+        throw new UsernameNotFoundException("User not found");
+    }
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
