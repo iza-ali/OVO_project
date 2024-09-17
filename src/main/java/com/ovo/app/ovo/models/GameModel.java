@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "game")
+@Table(name = "games")
 public class GameModel {
     @Id
     private Long id;

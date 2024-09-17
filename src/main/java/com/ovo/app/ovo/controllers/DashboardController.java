@@ -3,7 +3,7 @@ package com.ovo.app.ovo.controllers;
 import com.ovo.app.ovo.models.GameModel;
 import com.ovo.app.ovo.models.PlayerModel;
 import com.ovo.app.ovo.repositories.PlayerRepository;
-import com.ovo.app.ovo.services.GameServices;
+import com.ovo.app.ovo.services.GameManagementServices;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -16,8 +16,8 @@ import java.util.List;
 public class DashboardController {
 
     private final PlayerRepository playerRepository;
-    private final GameServices gameServices;
-    public DashboardController(PlayerRepository playerRepository, GameServices gameServices) {
+    private final GameManagementServices gameServices;
+    public DashboardController(PlayerRepository playerRepository, GameManagementServices gameServices) {
         this.playerRepository = playerRepository;
         this.gameServices = gameServices;
     }

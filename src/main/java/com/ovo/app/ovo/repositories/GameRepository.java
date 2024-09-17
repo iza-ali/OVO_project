@@ -11,4 +11,5 @@ import com.ovo.app.ovo.models.Game;
 @Repository
 public interface GameRepository extends JpaRepository<Game, Integer> {
     Optional<Game> findFirstByStatusAndSecondPlayerIsNull(GameStatus status);
+
 }

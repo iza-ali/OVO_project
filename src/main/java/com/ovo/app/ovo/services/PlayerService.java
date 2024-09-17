@@ -13,6 +13,7 @@ public class PlayerService {
 
 
     private BCryptPasswordEncoder passwordEncoder;
+    private final PlayerRepository playerRepository;
 
     public PlayerService(PlayerRepository playerRepository) {
         this.playerRepository = playerRepository;

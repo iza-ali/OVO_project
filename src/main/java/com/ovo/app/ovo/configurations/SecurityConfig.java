@@ -37,15 +37,10 @@ public class SecurityConfig {
                                 .requestMatchers("/tictactoe").authenticated()
                                 .requestMatchers("/leaderboard").authenticated()
                                 .requestMatchers("/images/*").permitAll()
-                                .requestMatchers("/login").permitAll()
                                 .requestMatchers("../static/assets").permitAll()
                                 .requestMatchers("/gameManagement").hasRole(String.valueOf(PlayerTypeEnum.ADMIN))
-                                .requestMatchers("/**/*.js", "/**/*.css").permitAll()
-//                                .anyRequest().hasRole(String.valueOf(PlayerTypeEnum.ADMIN))
                                 .requestMatchers("/js/*.js", "/css/*.css").permitAll()
-                                .anyRequest().permitAll()
-
-
+                                .requestMatchers("/login").permitAll()
                 ).formLogin(formLogin ->
                         formLogin.loginPage("/login")
                              .defaultSuccessUrl("/dashboard", true)
