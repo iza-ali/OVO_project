@@ -1,14 +1,9 @@
 package com.ovo.app.ovo.configurations;
 
 
-import com.ovo.app.ovo.enums.PlayerTypeEnum;
 import com.ovo.app.ovo.services.PlayerDetailsService;
-import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.authentication.configurers.userdetails.DaoAuthenticationConfigurer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -27,7 +22,6 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
-                                .requestMatchers("/*").permitAll()
                                 .requestMatchers("/signup").permitAll()
                                 .requestMatchers("/dashboard", "update-password").authenticated()
                                 .requestMatchers("/logout").authenticated()
@@ -36,25 +30,17 @@ public class SecurityConfig {
                                 .requestMatchers("/game/start").permitAll()
                                 .requestMatchers("/tictactoe").authenticated()
                                 .requestMatchers("/leaderboard").authenticated()
-                                .requestMatchers("/images/*").permitAll()
                                 .requestMatchers("../static/assets").permitAll()
-                                .requestMatchers("/gameManagement").hasRole(String.valueOf(PlayerTypeEnum.ADMIN))
                                 .requestMatchers("/js/*.js", "/css/*.css").permitAll()
-                                .requestMatchers("/login").permitAll()
+                                .anyRequest().permitAll() //unsafe
+
                 ).formLogin(formLogin ->
-                        formLogin.loginPage("/login")
-                             .defaultSuccessUrl("/dashboard", true)
-                ).logout(config -> config.logoutUrl("/logout")
-                        .logoutSuccessUrl("/login")).build();
+                        formLogin.defaultSuccessUrl("/dashboard", true)
+                ).logout(config -> config.logoutSuccessUrl("/")).build();
     }
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
-
-
-
-
 }
