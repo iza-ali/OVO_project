@@ -8,17 +8,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+
 @Controller
-public class DashboardController {
+public class LeaderboardController {
 
     private final PlayerRepository playerRepository;
 
-    public DashboardController(PlayerRepository playerRepository) {
+    public LeaderboardController(PlayerRepository playerRepository) {
         this.playerRepository = playerRepository;
     }
 
-    @GetMapping({ "/dashboard"})
-    public String dashboard(Model model) {
+    @GetMapping({ "/leaderboard"})
+    public String account(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         PlayerModel player = playerRepository.findByUsername(username);
@@ -27,6 +28,6 @@ public class DashboardController {
         } else {
             return "redirect:/login";
         }
-        return "dashboard";
+        return "leaderboard";
     }
 }

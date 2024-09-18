@@ -106,13 +106,13 @@
                         <h5 class="modal-title" id="passwordModalLabel">Edit password</h5>
                     </div>
                     <div class="modal-body">
-                        <form id="passwordForm">
-                            <label for="confirmPassword">Type in current password:</label><br>
-                            <input id="confirmPassword" type="password"><br>
-                            <label for="changePassword1">Type in new password:</label><br>
-                            <input id="changePassword1" type="password"><br>
-                            <label for="changePassword2">Type in new password again:</label><br>
-                            <input id="changePassword2" type="password"></form><br>
+                        <form id="passwordForm" th:action="@{/update-password}" method="post">
+                            <label for="currentPassword">Type in current password:</label><br>
+                            <input id="currentPassword" name="currentPassword" type="password"><br>
+                            <label for="newPassword">Type in new password:</label><br>
+                            <input id="newPassword" name="newPassword" type="password"><br>
+                            <label for="confirmNewPassword">Type in new password again:</label><br>
+                            <input id="confirmNewPassword" name="confirmNewPassword" type="password"></form><br>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
