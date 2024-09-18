@@ -41,7 +41,7 @@ public class AccountController {
             admin.setEmail("admin@ovo.com");
             admin.setPassword(bcryptedPassword.encode("admin@123"));
             admin.setPlayerId("ADMIN");
-            admin.setType(PlayerTypeEnum.ADMIN);
+            admin.setType(PlayerTypeEnum.ROLE_ADMIN);
             playerRepository.save(admin);
         }
     }
@@ -69,7 +69,7 @@ public class AccountController {
             player.setPassword(bcryptedPassword);
             player.setUsername(playerDto.getUsername());
             player.setPlayerId(Math.abs(new Random().nextLong()) + "");
-            player.setType(PlayerTypeEnum.PLAYER);
+            player.setType(PlayerTypeEnum.ROLE_PLAYER);
             playerRepository.save(player);
             model.addAttribute("player", new PlayerDto());
             model.addAttribute("success", true);

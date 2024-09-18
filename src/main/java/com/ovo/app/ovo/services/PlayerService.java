@@ -1,5 +1,6 @@
 package com.ovo.app.ovo.services;
 
+import com.ovo.app.ovo.repositories.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -10,8 +11,8 @@ import com.ovo.app.ovo.models.PlayerModel;
 
 @Service
 public class PlayerService {
+private PlayerRepository playerRepository;
 
-    @Autowired
     private PasswordEncoder passwordEncoder;
 
     public PlayerModel getUserByUsername(String username) throws UsernameNotFoundException {

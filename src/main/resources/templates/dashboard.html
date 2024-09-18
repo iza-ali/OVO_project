@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org" data-bs-theme="dark">
+<html lang="en" xmlns:th="https://www.thymeleaf.org" data-bs-theme="dark" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -19,34 +19,39 @@
     </script>
 </head>
 <body>
-<div class="d-flex" id="wrapper">
-    <div id="page-content-wrapper">
-        <nav class="navbar navbar-expand-lg border-bottom">
-            <div class="container-fluid">
-                <div><img class="navbar-brand ms-auto" alt="logo" height="60" src="../static/assets/ovo_logo.png"></div>
-                <ul class="navbar-nav mt-2 mt-lg-0">
-                    <li class="nav-item dropdown me-auto ">
-                        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="https://img.freepik.com/free-vector/cute-cat-gaming-cartoon_138676-2969.jpg" alt="hugenerd" width="30" height="30" class="rounded-circle">
-                            <span class="mx-1" th:text="${player.username}"></span>
-                        </a>
-<!--                        <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
-<!--                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">-->
-<!--                                <li class="nav-item" th:if="${player.type == T(com.ovo.app.ovo.enums.PlayerTypeEnum).ADMIN}">-->
-<!--                                    <a class="nav-link active" aria-current="page" href="/gameManagement">Game Management</a>-->
-<!--                                </li>-->
-<!--                            </ul>-->
-<!--                        </div>-->
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/leaderboard">My stats</a>
-                            <a class="dropdown-item" href="/account">Account</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" th:href="@{/logout}">Log out</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="/assets/ovo_logo.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
+            <span class="ms-2">OVO</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item" >
+                    <a class="nav-link active" aria-current="page" th:href="@{/gameManagement}">Game Management</a>
+                </li>
+          </ul>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="https://img.freepik.com/free-vector/cute-cat-gaming-cartoon_138676-2969.jpg" alt="hugenerd" width="30" height="30" class="rounded-circle">
+                        <span class="mx-1" th:text="${player.username}"></span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/leaderboard">My stats</a>
+                        <a class="dropdown-item" href="/account">Account</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" th:href="@{/logout}">Log out</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
         <div class="container-fluid">
             <h1 class="mt-4">Games</h1>
             <div id="games-grid">
@@ -65,8 +70,7 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

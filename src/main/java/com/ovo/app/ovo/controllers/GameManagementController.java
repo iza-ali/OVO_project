@@ -2,6 +2,7 @@ package com.ovo.app.ovo.controllers;
 
 import com.ovo.app.ovo.models.GameModel;
 import com.ovo.app.ovo.models.GameModelDto;
+import com.ovo.app.ovo.models.PlayerDto;
 import com.ovo.app.ovo.repositories.GameManagementRepository;
 import com.ovo.app.ovo.repositories.GameRepository;
 import com.ovo.app.ovo.services.GameManagementServices;
@@ -40,10 +41,8 @@ public class GameManagementController {
 
     @PostMapping("/add-game")
     public String addGame(Model model,
-                         @Valid @ModelAttribute("game") GameModelDto gameModelDto,
+                         @Valid @ModelAttribute("gameObj") GameModelDto gameModelDto,
                          BindingResult bindingResult) {
-
-
         try {
 
             GameModel game = new GameModel();
@@ -52,24 +51,20 @@ public class GameManagementController {
             game.setGameDescription(gameModelDto.getGameDescription());
             game.setImageUrl(gameModelDto.getImageUrl());
         gameManagementRepository.save(game);
-            model.addAttribute("game", new GameModelDto());
+            model.addAttribute("gameObj", new GameModelDto());
             model.addAttribute("success", true);
             return "gameManagement";
         } catch (Exception e) {
-            bindingResult.addError(new FieldError("game", "gameName", e.getMessage()));
+            bindingResult.addError(new FieldError("gameObj", "gameName", e.getMessage()));
             return "redirect:/gameManagement";
         }
     }
 
-    @GetMapping({ "/gameManagement"})
+    @GetMapping({"/gameManagement"})
     public String gameManagement(Model model) {
+        model.addAttribute("gameObj", new GameModelDto());
         return "gameManagement";
+
     }
 
-    @GetMapping("/games")
-    public String getAllGames(Model model) {
-        List<GameModel> games = gameServices.getAllGames();
-        model.addAttribute("games", games);
-        return "games";
-    }
 }
