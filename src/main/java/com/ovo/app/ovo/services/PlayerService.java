@@ -14,8 +14,19 @@ public class PlayerService {
     @Autowired
     private PlayerRepository playerRepository;
 
+
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    public PlayerModel getUserByUsername(String username) throws UsernameNotFoundException {
+
+        PlayerModel player= playerRepository.findByUsername(username);
+        if(player!=null){
+            return player;
+        }
+        throw new UsernameNotFoundException("User not found");
+    }
+
 
     public void updatePassword(String username, String currentPassword, String newPassword) throws Exception {
         PlayerModel player = playerRepository.findByUsername(username);
