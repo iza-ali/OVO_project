@@ -22,7 +22,6 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
-                                .requestMatchers("/*").permitAll()
                                 .requestMatchers("/signup").permitAll()
                                 .requestMatchers("/dashboard", "update-password").authenticated()
                                 .requestMatchers("/logout").authenticated()
@@ -32,7 +31,6 @@ public class SecurityConfig {
                                 .requestMatchers("/tictactoe").authenticated()
                                 .requestMatchers("/leaderboard").authenticated()
                                 .requestMatchers("../static/assets").permitAll()
-                                .requestMatchers("/**/*.js", "/**/*.css").permitAll()
                                 .requestMatchers("/js/*.js", "/css/*.css").permitAll()
                                 .anyRequest().permitAll() //unsafe
 

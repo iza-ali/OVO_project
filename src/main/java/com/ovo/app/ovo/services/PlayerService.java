@@ -6,6 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.security.Principal;
 
 
 @Service
@@ -26,16 +31,19 @@ public class PlayerService {
         }
         throw new UsernameNotFoundException("User not found");
     }
-
-
-    public void updatePassword(String username, String currentPassword, String newPassword) throws Exception {
+    public void updatePasswordHelper(String username, String currentPassword, String newPassword) throws Exception {
         PlayerModel player = playerRepository.findByUsername(username);
+        if(player != null){
+            if (!passwordEncoder.matches(currentPassword, player.getPassword())){
+                throw new Exception("Wrong password");
+            }
+            player.setPassword(passwordEncoder.encode(newPassword));
+            playerRepository.save(player);
+        }
+        else{
+            throw new Exception("Player Not Found");
 
-        if (!passwordEncoder.matches(currentPassword, player.getPassword())){
-            throw new Exception("Wrong password");
         }
 
-        player.setPassword(passwordEncoder.encode(newPassword));
-        playerRepository.save(player);
     }
 }
