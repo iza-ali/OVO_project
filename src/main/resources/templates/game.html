@@ -1,6 +1,9 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <meta name="_csrf" th:content="${_csrf.token}">
+    <meta name="_csrf_header" th:content="${_csrf.headerName}">
+
     <meta charset="UTF-8">
     <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
           name="viewport">
@@ -15,7 +18,6 @@
     <!--    end libs for stomp and sockjs-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
-<body>
 <body>
 <div class="text-center" id="box">
     <header>
@@ -51,6 +53,5 @@
 <script src="/js/socket_js.js">
     const playerOne = /*[[${player}]]*/ {};
 </script>
-</body>
 </body>
 </html>
