@@ -77,4 +77,15 @@ public class PlayerService {
             playerRepository.save(player);
         }
     }
+
+    public void deleteUser(String username) throws Exception {
+
+        PlayerModel player = playerRepository.findByUsername(username);
+
+        if(player==null){
+            throw new UsernameNotFoundException("User not found");
+        }else {
+            playerRepository.delete(player);
+        }
+    }
 }

@@ -58,4 +58,15 @@ public class PlayerEditController {
         }
         return "index";
     }
+
+    @PostMapping("/delete-user")
+    public String deleteUser(Principal principal, Model model) {
+        try{
+            playerService.deleteUser(principal.getName());
+        }   catch (Exception e){
+            model.addAttribute("error", e.getMessage());
+        }
+        return "index";
+    }
+
 }
