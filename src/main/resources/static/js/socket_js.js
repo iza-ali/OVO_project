@@ -4,6 +4,9 @@ let gameId;
 let username = document.getElementById("username").innerText;
 console.log(username);
 
+const csrfToken = $('meta[name="_csrf"]').attr('content');
+const csrfHeader = $('meta[name="_csrf_header"]').attr('content');
+
 console.log("connecting to the game");
 function connectToSocket(gameId) {
 
@@ -34,7 +37,10 @@ function create_game() {
             data: JSON.stringify({
                 "player": username
             }),
-
+            beforeSend: function(xhr) {
+                // Add the CSRF token to the request header
+                xhr.setRequestHeader(csrfHeader, csrfToken);
+            },
             success: function (data) {
                 gameId = data.gameId;
                 playerType = 'X';
@@ -63,6 +69,10 @@ function connectToRandom() {
             data: JSON.stringify({
                 "player": username
             }),
+            beforeSend: function(xhr) {
+                // Add the CSRF token to the request header
+                xhr.setRequestHeader(csrfHeader, csrfToken);
+            },
             success: function (data) {
                 gameId = data.gameId;
                 playerType = 'O';
@@ -95,6 +105,10 @@ function connectToSpecificGame() {
                 "player": username,
                 "gameId": localgameId
             }),
+            beforeSend: function(xhr) {
+                // Add the CSRF token to the request header
+                xhr.setRequestHeader(csrfHeader, csrfToken);
+            },
             success: function (data) {
                 gameId = data.gameId;
                 playerType = 'O';
