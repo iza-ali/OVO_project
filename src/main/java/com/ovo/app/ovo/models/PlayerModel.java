@@ -38,13 +38,6 @@ public class PlayerModel {
         // Constructor
     }
 
-    public PlayerModel(String username, String password, PlayerTypeEnum type, String email) {
-        this.username = username;
-        this.password = password;
-        this.type = type;
-        this.email = email;
-    }
-
     // Getters and setters
 
     public Long getId() {
