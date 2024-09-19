@@ -65,9 +65,9 @@
                         <h5 class="modal-title" id="exampleModalLabel">Edit username</h5>
                     </div>
                     <div class="modal-body">
-                        <form id="usernameForm">
-                        <label for="changeusername">Type in new username</label><br>
-                        <input id="changeusername" type="text"></form>
+                        <form id="usernameForm" th:action="@{/update-username}" method="post">
+                        <label for="newUsername">Type in new username</label><br>
+                        <input id="newUsername" name="newUsername" type="text"></form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -85,9 +85,9 @@
                         <h5 class="modal-title" id="emailModalLabel">Edit e-mail</h5>
                     </div>
                     <div class="modal-body">
-                        <form id="emailForm">
-                            <label for="changeemail">Type in new e-mail</label><br>
-                            <input id="changeemail" type="email"></form>
+                        <form id="emailForm" th:action="@{/update-email}" method="post">
+                            <label for="newEmail">Type in new e-mail</label><br>
+                            <input id="newEmail" name="newEmail" type="email"></form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
