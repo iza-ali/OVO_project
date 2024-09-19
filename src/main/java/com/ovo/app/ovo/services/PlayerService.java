@@ -31,11 +31,61 @@ public class PlayerService {
     public void updatePassword(String username, String currentPassword, String newPassword) throws Exception {
         PlayerModel player = playerRepository.findByUsername(username);
 
-        if (!passwordEncoder.matches(currentPassword, player.getPassword())){
-            throw new Exception("Wrong password");
-        }
+        if(player==null){
+            throw new UsernameNotFoundException("User not found");
+        }else {
 
-        player.setPassword(passwordEncoder.encode(newPassword));
-        playerRepository.save(player);
+            if (!passwordEncoder.matches(currentPassword, player.getPassword())) {
+                throw new Exception("You need a new password");
+            }
+
+            player.setPassword(passwordEncoder.encode(newPassword));
+            playerRepository.save(player);
+        }
+    }
+
+    public void updateUsername(String currentUsername, String newUsername) throws Exception {
+
+        PlayerModel player = playerRepository.findByUsername(currentUsername);
+
+        if(player==null){
+            throw new UsernameNotFoundException("User not found");
+        }else {
+
+            if (currentUsername.equals(newUsername)) {
+                throw new Exception("You need a new username");
+            }
+
+            player.setUsername(newUsername);
+            playerRepository.save(player);
+        }
+    }
+
+    public void updateEmail(String currentUsername, String newEmail) throws Exception {
+
+        PlayerModel player = playerRepository.findByUsername(currentUsername);
+
+        if(player==null){
+            throw new UsernameNotFoundException("User not found");
+        }else {
+
+            if (newEmail.equals(player.getEmail())) {
+                throw new Exception("You need a new e-mail");
+            }
+
+            player.setEmail(newEmail);
+            playerRepository.save(player);
+        }
+    }
+
+    public void deleteUser(String username) throws Exception {
+
+        PlayerModel player = playerRepository.findByUsername(username);
+
+        if(player==null){
+            throw new UsernameNotFoundException("User not found");
+        }else {
+            playerRepository.delete(player);
+        }
     }
 }
