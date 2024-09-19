@@ -9,6 +9,8 @@ import java.util.List;
 
 @Service
 public class GameManagementServices {
+
+    private
 final GameManagementRepository gameManagementRepository;
 
     public GameManagementServices(GameManagementRepository gameManagementRepository) {
@@ -18,5 +20,7 @@ final GameManagementRepository gameManagementRepository;
     public List<GameModel> getAllGames() {
         return gameManagementRepository.findAll();
     }
+
+
 
 }

@@ -80,10 +80,10 @@ public class AccountController {
         }
     }
 
-    @GetMapping("/logout")
-    public String logout() {
-        return "redirect:/logout";
-    }
+//    @GetMapping("/logout")
+//    public String logout() {
+//        return "redirect:/logout";
+//    }
 
 
 

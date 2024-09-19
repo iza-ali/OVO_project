@@ -9,38 +9,44 @@ import java.util.Date;
 @Entity
 @Table(name = "games")
 public class GameModel {
-    @Id
-    private Long id;
+
 
     @Column(name = "created_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
+
     @Column
     private String imageUrl;
 
+
     @Column(name = "game_name")
     private String gameName;
+
     @Enumerated(EnumType.STRING)
+
     @Column(name = "game_category")
     private GameCategoryEnum gameCategory;
 
-    @Column(name = "game_description")
-    private String gameDescription;
-
-    @Column(name="game_id" , unique = true)
-    private String gameId;
 
 
-
-    public String getGameName() {
-        return gameName;
-    }
     public String getImageUrl() {
         return imageUrl;
     }
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getGameName() {
+        return gameName;
     }
 
     public void setGameName(String gameName) {
@@ -71,15 +77,14 @@ public class GameModel {
         this.gameId = gameId;
     }
 
+    @Column(name = "game_description")
+    private String gameDescription;
+    @Id
+    @Column(name = "game_id", unique = true)
+    private String gameId;
 
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
-    public Long getId() {
-        return id;
-    }
 
     @PrePersist
     protected void onCreate() {

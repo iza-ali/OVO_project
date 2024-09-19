@@ -2,24 +2,44 @@ package com.ovo.app.ovo.models;
 
 import com.ovo.app.ovo.enums.GameCategoryEnum;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import org.springframework.web.multipart.MultipartFile;
 
 public class GameModelDto {
 
     @NotEmpty
     private String gameName;
 
-    @NotEmpty
-    private String gameId;
 
-    @NotEmpty
-    private String imageUrl;
 
     @NotEmpty
     private String gameDescription;
 
-    @NotEmpty
+    @NotNull
     private GameCategoryEnum gameCategory;
+
+    public @NotNull MultipartFile getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(@NotNull MultipartFile imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    @NotNull
+    private MultipartFile imageUrl;
+
+
+    public @NotNull GameCategoryEnum getGameCategory() {
+        return gameCategory;
+    }
+
+    public void setGameCategory(@NotNull GameCategoryEnum gameCategory) {
+        this.gameCategory = gameCategory;
+    }
+
+
 
     public @NotEmpty String getGameName() {
         return gameName;
@@ -29,21 +49,6 @@ public class GameModelDto {
         this.gameName = gameName;
     }
 
-    public @NotEmpty String getGameId() {
-        return gameId;
-    }
-
-    public void setGameId(@NotEmpty String gameId) {
-        this.gameId = gameId;
-    }
-
-    public @NotEmpty String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(@NotEmpty String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
 
     public @NotEmpty String getGameDescription() {
         return gameDescription;
@@ -53,11 +58,5 @@ public class GameModelDto {
         this.gameDescription = gameDescription;
     }
 
-    public @NotEmpty GameCategoryEnum getGameCategory() {
-        return gameCategory;
-    }
 
-    public void setGameCategory(@NotEmpty GameCategoryEnum gameCategory) {
-        this.gameCategory = gameCategory;
-    }
 }

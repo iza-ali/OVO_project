@@ -16,4 +16,5 @@ public interface GameManagementRepository extends JpaRepository<GameModel, Integ
 
 
 
+
 }

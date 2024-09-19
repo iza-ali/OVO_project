@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -34,13 +35,16 @@ public class SecurityConfig {
                                 .requestMatchers("/tictactoe").authenticated()
                                 .requestMatchers("/leaderboard").authenticated()
                                 .requestMatchers("../static/assets").permitAll()
+                                .requestMatchers("/assets/**").permitAll()
+                                .requestMatchers("/api/games/**").authenticated()
+                                .requestMatchers("/adminDashboard").hasAuthority(String.valueOf(PlayerTypeEnum.ROLE_ADMIN))
                                 .requestMatchers("/gameManagement").hasAuthority(String.valueOf(PlayerTypeEnum.ROLE_ADMIN))
+                                .requestMatchers("/reports").hasAuthority(String.valueOf(PlayerTypeEnum.ROLE_ADMIN))
                                 .requestMatchers("/js/*.js", "/css/*.css").permitAll()
-
 
                 ).formLogin(formLogin ->
                         formLogin.loginPage("/login")
-                                .defaultSuccessUrl("/dashboard", true)
+                                .successHandler(authenticationSuccessHandler())
                 ).logout(config -> config.logoutUrl("/logout")
                         .logoutSuccessUrl("/login")).build();
     }
@@ -48,5 +52,17 @@ public class SecurityConfig {
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public AuthenticationSuccessHandler authenticationSuccessHandler() {
+        return (request, response, authentication) -> {
+            if (authentication.getAuthorities().stream()
+                    .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals(String.valueOf(PlayerTypeEnum.ROLE_ADMIN)))) {
+                response.sendRedirect("/adminDashboard");
+            } else {
+                response.sendRedirect("/dashboard");
+            }
+        };
     }
 }
