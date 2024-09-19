@@ -111,5 +111,13 @@ public class PlayerModel implements UserDetails {
         this.createdAt = new Date();
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
     // Getters and setters
 }

@@ -17,6 +17,7 @@
                             <th scope="row">${index + 1}</th>
                             <td>${game.gameName}</td>
                             <td>${game.gameDescription}</td>
+<!--                            <td>${game.gameCategory}</td>-->
                             <td><img src="data:image/jpeg;base64,${game.imageUrl}" class="img-thumbnail" alt="${game.gameName}" style="max-width: 100px;"></td>
                             <td><a href="#" class="btn btn-primary" onclick="editGame('${game.gameId}')">Edit</a></td>
                         `;
@@ -127,6 +128,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Game Name</th>
                 <th scope="col">Description</th>
+<!--                <th scope="col">Category</th>-->
                 <th scope="col">Image</th>
                 <th scope="col">Actions</th>
             </tr>
