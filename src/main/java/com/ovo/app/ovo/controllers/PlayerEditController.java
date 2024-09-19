@@ -24,7 +24,7 @@ public class PlayerEditController {
         try{
             if (!newPassword.equals(confirmNewPassword)){
                 model.addAttribute("error", "Passwords do not match");
-                return "update-password";
+                return "account";
             }
 
             playerService.updatePassword(principal.getName(), currentPassword, newPassword);
