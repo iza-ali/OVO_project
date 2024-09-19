@@ -2,14 +2,10 @@ package com.ovo.app.ovo.configurations;
 
 
 import com.ovo.app.ovo.enums.PlayerTypeEnum;
-import com.ovo.app.ovo.services.PlayerDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -37,9 +33,9 @@ public class SecurityConfig {
                                 .requestMatchers("../static/assets").permitAll()
                                 .requestMatchers("/assets/**").permitAll()
                                 .requestMatchers("/api/games/**").authenticated()
-                                .requestMatchers("/adminDashboard").hasAuthority(String.valueOf(PlayerTypeEnum.ROLE_ADMIN))
-                                .requestMatchers("/gameManagement").hasAuthority(String.valueOf(PlayerTypeEnum.ROLE_ADMIN))
-                                .requestMatchers("/reports").hasAuthority(String.valueOf(PlayerTypeEnum.ROLE_ADMIN))
+                                .requestMatchers("/adminDashboard").hasRole("ADMIN")
+                                .requestMatchers("/gameManagement").hasRole("ADMIN")
+                                .requestMatchers("/reports").hasRole("ADMIN")
                                 .requestMatchers("/js/*.js", "/css/*.css").permitAll()
 
                 ).formLogin(formLogin ->
@@ -57,8 +53,9 @@ public class SecurityConfig {
     @Bean
     public AuthenticationSuccessHandler authenticationSuccessHandler() {
         return (request, response, authentication) -> {
+
             if (authentication.getAuthorities().stream()
-                    .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals(String.valueOf(PlayerTypeEnum.ROLE_ADMIN)))) {
+                    .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_ADMIN"))) {
                 response.sendRedirect("/adminDashboard");
             } else {
                 response.sendRedirect("/dashboard");
