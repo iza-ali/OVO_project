@@ -27,7 +27,7 @@ public class PlayerEditController {
                 return "account";
             }
 
-            playerService.updatePassword(principal.getName(), currentPassword, newPassword);
+            playerService.updatePasswordHelper(principal.getName(), currentPassword, newPassword);
             model.addAttribute("message", "Password updated successfully");
         }   catch (Exception e){
             model.addAttribute("error", e.getMessage());
