@@ -1,4 +1,4 @@
-package com.ovo.app.ovo.models;
+package com.ovo.app.ovo.dtos;
 
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.Email;

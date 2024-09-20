@@ -15,9 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.ui.Model;
-
 import java.security.Principal;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
@@ -34,7 +32,6 @@ class PlayerServiceTest {
     private PasswordEncoder passwordEncoder;
     @Mock
     private Model model;
-
     @Test
     public void PlayerService_updatePasswordHelper_CorrectOldPassword() throws Exception {
         String Username = "Username";
@@ -88,53 +85,4 @@ class PlayerServiceTest {
 
 
     }
-
-//    @Test
-//    @WithMockUser(username = "my_principal")
-//    public void PlayerService_updatePasswordPasswordsDontMatch() throws Exception {
-//        String CurrentPassword = "OldPassword";
-//        String NewPassword = "NewPassword";
-//        String NewConfirmPassword = "NewConfirmPassword";
-//        Principal principal = () -> "my_principal";
-//
-//        assertDoesNotThrow(() -> playerService.updatePasswordHelper(CurrentPassword,NewPassword,NewConfirmPassword,principal,model));
-//        verify(model).addAttribute("error", "Passwords do not match");
-//    }
-//
-//    @Test
-//    @WithMockUser(username = "my_principal")
-//    public void PlayerService_updatePasswordPasswordsMatch() throws Exception {
-//        String CurrentPassword = "OldPassword";
-//        String NewPassword = "NewPassword";
-//        String NewConfirmPassword = "NewPassword";
-//        Principal principal = () -> "my_principal";
-//
-//        assertDoesNotThrow(() -> playerService.updatePassword(CurrentPassword,NewPassword,NewConfirmPassword,principal,model));
-//        verify(model,never()).addAttribute("error", "Passwords do not match");
-//        verify(model).addAttribute("message", "Password updated successfully");
-//
-//    }
-//
-//    @Test
-//    @WithMockUser(username = "Username")
-//    public void PlayerService_updatePasswordOldPasswordsNotMatch() throws Exception {
-//        String currentPassword = "OldOtherPassword";
-//        String NewPassword = "NewPassword";
-//        String NewConfirmPassword = "NewPassword";
-//        String Username = "Username";
-//        Principal principal = () -> "Username";
-//
-//        PlayerModel player = new PlayerModel();
-//        player.setUsername("Username");
-//        player.setPassword("OldPassword");
-//        player.setEmail("Player@ovo.com");
-//        player.setPlayerId("id1237");
-//        player.setType(PlayerTypeEnum.PLAYER);
-//
-//        Mockito.when(playerRepository.findByUsername(Username)).thenReturn(player);
-//        Mockito.when(passwordEncoder.matches(currentPassword, player.getPassword())).thenReturn(false);
-//
-//        assertThrows(Exception.class, () -> playerService.updatePassword(currentPassword,NewPassword,NewConfirmPassword,principal,model));
-//
-//    }
 }

@@ -1,4 +1,4 @@
-package com.ovo.app.ovo.models;
+package com.ovo.app.ovo.dtos;
 
 public class StartGameRequest {
     private String player;

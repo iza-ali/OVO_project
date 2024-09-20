@@ -1,6 +1,6 @@
 package com.ovo.app.ovo.models;
 
-import com.ovo.app.ovo.enums.GameStatus;
+import com.ovo.app.ovo.enums.*;
 import jakarta.persistence.*;
 
 @Entity
@@ -12,9 +12,7 @@ public class Game {
     private String firstPlayer;
     private String secondPlayer;
     private TicToe winner;
-
     private GameStatus status;
-
     private int[][] board;
 
     public Game(String firstPlayer) {
