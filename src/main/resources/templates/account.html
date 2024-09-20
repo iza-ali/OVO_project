@@ -66,8 +66,9 @@
                     </div>
                     <div class="modal-body">
                         <form id="usernameForm" th:action="@{/update-username}" method="post">
-                        <label for="newUsername">Type in new username</label><br>
-                        <input id="newUsername" name="newUsername" type="text"></form>
+                            <label for="newUsername">Type in new username</label><br>
+                            <input id="newUsername" name="newUsername" type="text"></form>
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -85,9 +86,11 @@
                         <h5 class="modal-title" id="emailModalLabel">Edit e-mail</h5>
                     </div>
                     <div class="modal-body">
-                        <form id="emailForm" th:action="@{/update-email}" method="post">
-                            <label for="newEmail">Type in new e-mail</label><br>
-                            <input id="newEmail" name="newEmail" type="email"></form>
+
+                        <<form id="emailForm" th:action="@{/update-email}" method="post">
+                        <label for="newEmail">Type in new e-mail</label><br>
+                        <input id="newEmail" name="newEmail" type="email"></form>
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -135,7 +138,9 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <form id="deleteAccount" th:action="@{/delete-user}" method="post">
-                        <button type="submit" class="alert alert-danger">Delete account</button>
+
+                            <button type="submit" class="alert alert-danger">Delete account</button>
+
                         </form>
                     </div>
                 </div>

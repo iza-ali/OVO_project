@@ -37,7 +37,15 @@ public class PlayerModel implements UserDetails {
     @Enumerated(EnumType.STRING)
     @Column(name = "type", nullable = false)
     private PlayerTypeEnum type;
+    public PlayerModel(String username, String password, PlayerTypeEnum type, String email) {
+        this.username = username;
+        this.password = password;
+        this.type = type;
+        this.email = email;
+    }
 
+    public PlayerModel() {
+    }
 
 
     public void setId(Long id) {
