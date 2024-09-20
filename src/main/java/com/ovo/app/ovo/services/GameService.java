@@ -49,7 +49,7 @@ public class GameService {
     }
 
     public Game connectToRandomGame(String player2) throws NotFoundException {
-        Optional<Game> game = gameRepository.findFirstByStatusAndSecondPlayerIsNull(GameStatus.NEW);
+        Optional<Game> game = gameRepository.findFirstByStatusAndSecondPlayerIsNullAndFirstPlayerIsNot(GameStatus.NEW, player2);
         if (game.isPresent()) {
             game.get().setSecondPlayer(player2);
             game.get().setStatus(GameStatus.IN_PROGRESS);

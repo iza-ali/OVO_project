@@ -29,6 +29,10 @@ function makeAMove(type, xCoordinate, yCoordinate) {
             "coordinateY": yCoordinate,
             "gameId": gameId
         }),
+        beforeSend: function(xhr) {
+            // Add the CSRF token to the request header
+            xhr.setRequestHeader(csrfHeader, csrfToken);
+        },
         success: function (data) {
             displayResponse(data);
             gameOn = false;
