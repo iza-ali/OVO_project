@@ -1,7 +1,6 @@
 package com.ovo.app.ovo.configurations;
 
 
-import com.ovo.app.ovo.enums.PlayerTypeEnum;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -17,7 +16,6 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-//                .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
                                 .requestMatchers("/*").permitAll()
@@ -26,9 +24,6 @@ public class SecurityConfig {
                                 .requestMatchers("/logout").authenticated()
                                 .requestMatchers("/account").authenticated()
                                 .requestMatchers("/login").permitAll()
-                                .requestMatchers("/game").permitAll()
-                                .requestMatchers("/game/start").permitAll()
-                                .requestMatchers("/tictactoe").authenticated()
                                 .requestMatchers("/leaderboard").authenticated()
                                 .requestMatchers("../static/assets").permitAll()
                                 .requestMatchers("/assets/**").permitAll()
@@ -37,6 +32,10 @@ public class SecurityConfig {
                                 .requestMatchers("/gameManagement").hasRole("ADMIN")
                                 .requestMatchers("/reports").hasRole("ADMIN")
                                 .requestMatchers("/js/*.js", "/css/*.css").permitAll()
+                                .requestMatchers("/game").authenticated()
+                                .requestMatchers("/game/**").authenticated()
+                                .requestMatchers("/gameplay").authenticated()
+                                .requestMatchers("/gameplay/**").authenticated()
 
                 ).formLogin(formLogin ->
                         formLogin.loginPage("/login")
