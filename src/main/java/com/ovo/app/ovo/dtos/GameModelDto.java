@@ -1,9 +1,8 @@
-package com.ovo.app.ovo.models;
+package com.ovo.app.ovo.dtos;
 
 import com.ovo.app.ovo.enums.GameCategoryEnum;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import org.springframework.web.multipart.MultipartFile;
 
 public class GameModelDto {

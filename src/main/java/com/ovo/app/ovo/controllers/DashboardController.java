@@ -4,6 +4,8 @@ import com.ovo.app.ovo.models.GameModel;
 import com.ovo.app.ovo.models.PlayerModel;
 import com.ovo.app.ovo.repositories.PlayerRepository;
 import com.ovo.app.ovo.services.GameManagementServices;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,7 @@ import java.util.List;
 @Controller
 public class DashboardController {
 
+    private static final Logger log = LoggerFactory.getLogger(DashboardController.class);
     private final PlayerRepository playerRepository;
     private final GameManagementServices gameServices;
     public DashboardController(PlayerRepository playerRepository, GameManagementServices gameServices) {
@@ -24,6 +27,7 @@ public class DashboardController {
 
     @GetMapping({ "/dashboard"})
     public String dashboard(Model model) {
+        log.info("dashboard");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         PlayerModel player = playerRepository.findByUsername(username);
@@ -39,6 +43,7 @@ public class DashboardController {
 
     @GetMapping({ "/adminDashboard"})
     public String adminDashboard(Model model) {
+        log.info("adminDashboard");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         PlayerModel player = playerRepository.findByUsername(username);
