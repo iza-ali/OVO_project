@@ -1,4 +1,4 @@
-package com.ovo.app.ovo.models;
+package com.ovo.app.ovo.enums;
 
 public enum TicToe {
     X(1), O(2);
