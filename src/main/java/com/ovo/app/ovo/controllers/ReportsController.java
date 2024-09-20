@@ -1,9 +1,13 @@
 // ReportController.java
 package com.ovo.app.ovo.controllers;
 
+import com.ovo.app.ovo.models.PlayerModel;
 import com.ovo.app.ovo.models.ReportDto;
 import com.ovo.app.ovo.models.ReportModel;
+import com.ovo.app.ovo.repositories.PlayerRepository;
 import com.ovo.app.ovo.repositories.ReportRepository;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,14 +22,23 @@ import java.security.Principal;
 public class ReportsController {
 
     private final ReportRepository reportRepository;
+    private final PlayerRepository playerRepository;
 
-    public ReportsController(ReportRepository reportRepository) {
+    public ReportsController(ReportRepository reportRepository, PlayerRepository playerRepository) {
         this.reportRepository = reportRepository;
+        this.playerRepository = playerRepository;
     }
 
     @GetMapping("/reports")
     public String reports(Model model) {
         model.addAttribute("reports", reportRepository.findAll());
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        PlayerModel player = playerRepository.findByUsername(username);
+        if (player != null) {
+            model.addAttribute("player", player);
+        }
+
         return "reports";
     }
 
