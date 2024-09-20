@@ -58,6 +58,7 @@ public class GameManagementController {
                 String base64Image = Base64.getEncoder().encodeToString(imageBytes);
                 game.setImageUrl(base64Image);
             }
+            game.setGamePath(gameModelDto.getGamePath());
             game.setGameId(String.valueOf(new Random().nextInt(1000)));
             gameManagementRepository.save(game);
             model.addAttribute("gameObj", new GameModelDto());
@@ -94,12 +95,14 @@ public class GameManagementController {
                                         @RequestParam String gameName,
                                         @RequestParam String gameDescription,
                                         @RequestParam GameCategoryEnum gameCategory,
+                                        @RequestParam String gamePath,
                                         @RequestParam(required = false) MultipartFile imageUrl) {
         try {
             GameModel game = gameManagementRepository.findById(Integer.valueOf(gameId)).orElseThrow(() -> new RuntimeException("Game not found"));
             game.setGameName(gameName);
             game.setGameDescription(gameDescription);
             game.setGameCategory(gameCategory);
+            game.setGamePath(gamePath);
             if (imageUrl != null && !imageUrl.isEmpty()) {
                 byte[] imageBytes = imageUrl.getBytes();
                 String base64Image = Base64.getEncoder().encodeToString(imageBytes);

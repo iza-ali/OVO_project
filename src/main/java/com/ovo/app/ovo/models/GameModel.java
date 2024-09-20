@@ -18,6 +18,16 @@ public class GameModel {
     @Column
     private String imageUrl;
 
+    public String getGamePath() {
+        return gamePath;
+    }
+
+    public void setGamePath(String gamePath) {
+        this.gamePath = gamePath;
+    }
+
+    @Column (name = "game_path")
+    private String gamePath;
 
     @Column(name = "game_name")
     private String gameName;

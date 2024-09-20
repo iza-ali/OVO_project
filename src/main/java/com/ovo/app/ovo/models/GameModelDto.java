@@ -19,6 +19,17 @@ public class GameModelDto {
     @NotNull
     private GameCategoryEnum gameCategory;
 
+    public @NotEmpty String getGamePath() {
+        return gamePath;
+    }
+
+    public void setGamePath(@NotEmpty String gamePath) {
+        this.gamePath = gamePath;
+    }
+
+    @NotEmpty
+    private String gamePath;
+
     public @NotNull MultipartFile getImageUrl() {
         return imageUrl;
     }

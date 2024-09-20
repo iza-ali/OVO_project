@@ -35,18 +35,19 @@ private PlayerRepository playerRepository;
         } else {
             throw new Exception("Player Not Found");
 
-            if (player == null) {
-                throw new UsernameNotFoundException("User not found");
-            } else {
 
-                if (!passwordEncoder.matches(currentPassword, player.getPassword())) {
-                    throw new Exception("You need a new password");
-                }
-
-                player.setPassword(passwordEncoder.encode(newPassword));
-                playerRepository.save(player);
-
-            }
+//            if (player == null) {
+//                throw new UsernameNotFoundException("User not found");
+//            } else {
+//
+//                if (!passwordEncoder.matches(currentPassword, player.getPassword())) {
+//                    throw new Exception("You need a new password");
+//                }
+//
+//                player.setPassword(passwordEncoder.encode(newPassword));
+//                playerRepository.save(player);
+//
+//            }
         }
     }
 

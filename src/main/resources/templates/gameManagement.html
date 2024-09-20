@@ -55,6 +55,7 @@
                     document.getElementById('editGameName').value = game.gameName;
                     document.getElementById('editGameDescription').value = game.gameDescription;
                     document.getElementById('editGameCategory').value = game.gameCategory;
+                    document.getElementById('editGamePath').value = game.gamePath;
                     new bootstrap.Modal(document.getElementById('editGameModal')).show();
                 })
                 .catch(error => console.error('Error fetching game details:', error));
@@ -67,11 +68,13 @@
             const gameDescription = document.getElementById('editGameDescription').value;
             const gameCategory = document.getElementById('editGameCategory').value;
             const imageUrl = document.getElementById('editImageUrl').files[0];
+            const gamePath = document.getElementById('editGamePath').value;
 
             const formData = new FormData();
             formData.append('gameName', gameName);
             formData.append('gameDescription', gameDescription);
             formData.append('gameCategory', gameCategory);
+            formData.append('gamePath', gamePath);
             if (imageUrl) {
                 formData.append('imageUrl', imageUrl);
             }
@@ -117,6 +120,11 @@
             <label for="imageUrl" class="form-label">Game Image</label>
             <input type="file" class="form-control" th:field="*{imageUrl}" id="imageUrl" name="imageUrl" accept="image/*">
         </div>
+        <div class="mb-3">
+            <label for="gamePath" class="form-label">Game Path</label>
+            <input type="text" class="form-control" id="gamePath" th:field="*{gamePath}" name="gamePath" required>
+        </div>
+
         <button type="submit" class="btn btn-primary">Add Game</button>
     </form>
     <hr>
@@ -157,6 +165,10 @@
                     <div class="mb-3">
                         <label for="editGameDescription" class="form-label">Game Description</label>
                         <textarea class="form-control" id="editGameDescription" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editGamePath" class="form-label">Game Path</label>
+                        <input type="text" class="form-control" id="editGamePath" required>
                     </div>
                     <div class="mb-3">
                         <label for="editGameCategory" class="form-label">Game Category</label>

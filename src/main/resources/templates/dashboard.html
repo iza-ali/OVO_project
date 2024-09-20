@@ -54,7 +54,8 @@
                                 <h5 class="card-title" th:text="${game.gameName}">Game Name</h5>
                                 <p class="card-text" th:text="${game.gameDescription}">Game Description</p>
                                 <p class="card-text" th:text="${game.gameCategory}">Game Category</p>
-                                <a href="#" class="btn btn-primary">Play Now</a>
+                            <a th:href="${game.gamePath}" class="btn btn-primary">Play Now</a>
+
                             <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#createReportModal">
                                 <i class="bi bi-flag"></i> Report
                             </button>
