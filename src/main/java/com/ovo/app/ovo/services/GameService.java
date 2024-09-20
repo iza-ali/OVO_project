@@ -1,6 +1,7 @@
 package com.ovo.app.ovo.services;
 
-import com.ovo.app.ovo.enums.GameStatus;
+import com.ovo.app.ovo.dtos.*;
+import com.ovo.app.ovo.enums.*;
 import com.ovo.app.ovo.exception.*;
 import com.ovo.app.ovo.models.*;
 import com.ovo.app.ovo.repositories.GameRepository;

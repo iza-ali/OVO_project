@@ -1,7 +1,7 @@
 package com.ovo.app.ovo.controllers;
 
-import com.ovo.app.ovo.enums.PlayerTypeEnum;
-import com.ovo.app.ovo.models.PlayerDto;
+import com.ovo.app.ovo.enums.*;
+import com.ovo.app.ovo.dtos.*;
 import com.ovo.app.ovo.models.PlayerModel;
 import com.ovo.app.ovo.repositories.PlayerRepository;
 import jakarta.annotation.PostConstruct;

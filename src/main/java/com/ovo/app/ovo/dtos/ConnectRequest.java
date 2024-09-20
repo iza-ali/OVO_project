@@ -1,4 +1,4 @@
-package com.ovo.app.ovo.models;
+package com.ovo.app.ovo.dtos;
 
 public class ConnectRequest {
     private String player;

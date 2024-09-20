@@ -1,5 +1,6 @@
-package com.ovo.app.ovo.models;
+package com.ovo.app.ovo.dtos;
 
+import com.ovo.app.ovo.enums.*;
 
 public class GamePlay {
 
