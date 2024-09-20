@@ -6,6 +6,8 @@ import com.ovo.app.ovo.models.PlayerModel;
 import com.ovo.app.ovo.repositories.PlayerRepository;
 import jakarta.annotation.PostConstruct;
 import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +22,7 @@ import java.util.Random;
 @Controller
 public class AccountController {
 
+    private static final Logger log = LoggerFactory.getLogger(AccountController.class);
     private final PlayerRepository playerRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
@@ -30,6 +33,7 @@ public class AccountController {
 
     @GetMapping("/signup")
     public String signup(Model model) {
+        log.info("signup init");
         model.addAttribute("player", new PlayerDto());
         model.addAttribute("success", false);
         return "signup";
@@ -37,6 +41,7 @@ public class AccountController {
 
     @PostConstruct
     public void createDefaultAdmin() {
+        log.info("createDefaultAdmin");
         if (playerRepository.findByUsername("admin@ovo.com") == null) {
             PlayerModel admin = new PlayerModel();
             admin.setUsername("admin@ovo.com");
@@ -52,7 +57,6 @@ public class AccountController {
     public String signup(Model model,
                          @Valid @ModelAttribute("player") PlayerDto playerDto,
                          BindingResult bindingResult) {
-
         if (!playerDto.getPassword().equals(playerDto.getConfirmPassword())) {
             bindingResult.addError(new FieldError("player", "confirmPassword", "Passwords do not match"));
         }
@@ -63,6 +67,7 @@ public class AccountController {
             bindingResult.addError(new FieldError("player", "username", "User with given username already exists"));
         }
         if (bindingResult.hasErrors()) {
+            log.info("User details have errors");
             return "signup";
         }
         try {
@@ -76,8 +81,10 @@ public class AccountController {
             playerRepository.save(player);
             model.addAttribute("player", new PlayerDto());
             model.addAttribute("success", true);
+            log.info("signup success");
             return "signup";
         } catch (Exception e) {
+            log.error(e.getMessage());
             bindingResult.addError(new FieldError("player", "username", e.getMessage()));
             return "redirect:/login";
         }
@@ -85,6 +92,7 @@ public class AccountController {
 
     @GetMapping("/logout")
     public String logout() {
+        log.info("logout");
         return "redirect:/login";
     }
 

@@ -2,7 +2,7 @@ package com.ovo.app.ovo.controllers;
 
 import com.ovo.app.ovo.enums.GameCategoryEnum;
 import com.ovo.app.ovo.models.GameModel;
-import com.ovo.app.ovo.models.GameModelDto;
+import com.ovo.app.ovo.dtos.GameModelDto;
 import com.ovo.app.ovo.repositories.GameManagementRepository;
 import com.ovo.app.ovo.services.GameManagementServices;
 import jakarta.validation.Valid;

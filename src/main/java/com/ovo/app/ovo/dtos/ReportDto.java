@@ -1,5 +1,5 @@
 // ReportDto.java
-package com.ovo.app.ovo.models;
+package com.ovo.app.ovo.dtos;
 
 public class ReportDto {
 
