@@ -2,13 +2,17 @@ package com.ovo.app.ovo.models;
 
 import com.ovo.app.ovo.enums.PlayerTypeEnum;
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
-import java.util.Optional;
+import java.util.List;
 
 @Entity
 @Table(name = "players")
-public class PlayerModel {
+public class PlayerModel implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,73 +38,72 @@ public class PlayerModel {
     @Column(name = "type", nullable = false)
     private PlayerTypeEnum type;
 
-    public PlayerModel() {
-        // Constructor
-    }
 
-    public PlayerModel(String username, String password, PlayerTypeEnum type, String email) {
-        this.username = username;
-        this.password = password;
-        this.type = type;
-        this.email = email;
-    }
-
-    // Getters and setters
-
-    public Long getId() {
-        return id;
-    }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getPlayerId() {
-        return playerId;
-    }
-
-    public void setPlayerId(String playerId) {
-        this.playerId = playerId;
-    }
-
-    public String getUsername() {
-        return username;
     }
 
     public void setUsername(String username) {
         this.username = username;
     }
 
-    public String getEmail() {
-        return email;
+
+
+    public void setPlayerId(String playerId) {
+        this.playerId = playerId;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 
-    public PlayerTypeEnum getType() {
-        return type;
-    }
-
     public void setType(PlayerTypeEnum type) {
         this.type = type;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Collections.singletonList((GrantedAuthority) () -> "ROLE_" + type.name());
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
     @PrePersist
@@ -108,4 +111,13 @@ public class PlayerModel {
         this.createdAt = new Date();
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    // Getters and setters
 }

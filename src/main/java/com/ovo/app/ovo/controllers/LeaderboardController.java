@@ -15,6 +15,7 @@ public class LeaderboardController {
     private final PlayerRepository playerRepository;
 
     public LeaderboardController(PlayerRepository playerRepository) {
+
         this.playerRepository = playerRepository;
     }
 
