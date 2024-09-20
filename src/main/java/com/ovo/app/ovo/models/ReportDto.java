@@ -31,5 +31,15 @@ public class ReportDto {
     private String description;
     private String createdBy;
 
+    public String getGameId() {
+        return gameId;
+    }
+
+    public void setGameId(String gameId) {
+        this.gameId = gameId;
+    }
+
+    private String gameId;
+
     // Getters and setters
 }
