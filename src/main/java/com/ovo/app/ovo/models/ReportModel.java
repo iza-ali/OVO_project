@@ -61,6 +61,17 @@ public class ReportModel {
     @Column(name = "created_by", nullable = false)
     private String createdBy;
 
+    public String getGameId() {
+        return gameId;
+    }
+
+    public void setGameId(String gameId) {
+        this.gameId = gameId;
+    }
+
+    @Column(name = "game_id")
+    private String gameId;
+
     @Column(name = "created_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
