@@ -12,12 +12,12 @@ public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer 
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/gameplay").withSockJS();  // WebSocket endpoint for clients to connect
+        registry.addEndpoint("/gameplay").withSockJS();
     }
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
-        registry.setApplicationDestinationPrefixes("/app");   // Prefix for sending messages
-        registry.enableSimpleBroker("/topic", "/queue");      // Topics for broadcasting (chat, game updates)
+        registry.setApplicationDestinationPrefixes("/app");
+        registry.enableSimpleBroker("/topic", "/queue");
     }
 }
