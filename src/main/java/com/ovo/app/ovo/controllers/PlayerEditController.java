@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -25,6 +24,7 @@ public class PlayerEditController {
 
     private final PlayerService playerService;
 
+
     @PostMapping("/update-password")
     public String updatePassword(@RequestParam String currentPassword,
                                  @RequestParam String newPassword,
@@ -34,7 +34,7 @@ public class PlayerEditController {
             log.info("Updating password for {}" ,principal.getName());
             if (!newPassword.equals(confirmNewPassword)){
                 model.addAttribute("error", "Passwords do not match");
-                return "update-password";
+                return "account";
             }
 
             playerService.updatePasswordHelper(principal.getName(), currentPassword, newPassword);
@@ -44,6 +44,7 @@ public class PlayerEditController {
         }
         return "index";
     }
+
 
     @PostMapping("/delete-user")
     public String deleteUser(Principal principal, Model model) {
@@ -65,11 +66,14 @@ public class PlayerEditController {
             playerService.updateUsername(principal.getName(), newUsername);
             model.addAttribute("message", "Username updated successfully");
         }   catch (Exception e){
+
             log.error("Error updating username for", e);
+
             model.addAttribute("error", e.getMessage());
         }
         return "index";
     }
+
     @PostMapping("/update-email")
     public String updateEmail(@RequestParam String newEmail,
                               Principal principal, Model model) {
@@ -78,9 +82,21 @@ public class PlayerEditController {
             playerService.updateEmail(principal.getName(), newEmail);
             model.addAttribute("message", "Username updated successfully");
         }   catch (Exception e){
+
             log.error("Error updating email for", e);
+
             model.addAttribute("error", e.getMessage());
         }
         return "index";
     }
+    @PostMapping("/delete-user")
+    public String deleteUser(Principal principal, Model model) {
+        try{
+            playerService.deleteUser(principal.getName());
+        }   catch (Exception e){
+            model.addAttribute("error", e.getMessage());
+        }
+        return "index";
+    }
+
 }

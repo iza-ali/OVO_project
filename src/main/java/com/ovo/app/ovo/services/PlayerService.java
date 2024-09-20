@@ -1,5 +1,6 @@
 package com.ovo.app.ovo.services;
 
+import com.ovo.app.ovo.models.PlayerModel;
 import com.ovo.app.ovo.repositories.PlayerRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,8 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.ovo.app.ovo.models.PlayerModel;
+import java.security.Principal;
 
 
 @Service
@@ -19,6 +23,7 @@ public class PlayerService {
     private PlayerRepository playerRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
+
 
     public void updatePasswordHelper(String username, String currentPassword, String newPassword) throws Exception {
         PlayerModel player = getUserByUsername(username);
@@ -37,6 +42,7 @@ public class PlayerService {
     }
     public void deleteUser(String username) throws Exception {
         PlayerModel player = getUserByUsername(username);
+
         if(player==null){
             throw new UsernameNotFoundException("User not found");
         }else {
@@ -70,6 +76,7 @@ public class PlayerService {
             playerRepository.save(player);
         }
     }
+
     public PlayerModel getUserByUsername(String username) throws UsernameNotFoundException {
 
         PlayerModel player= playerRepository.findByUsername(username);
@@ -79,3 +86,6 @@ public class PlayerService {
         throw new UsernameNotFoundException("User not found");
     }
 }
+
+}
+
